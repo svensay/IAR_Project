@@ -15,8 +15,8 @@ class Amygdala:
 
     def poids_Vi(self,alpha = 0.2) :
         for i in range(self.V.size-1) :
-            self.V[i]+= alpha*(self.S[i]*max(0,(self.rew-self.Aj)))
-        self.V[-1]+=alpha*(self.Th*max(0,(self.rew-self.Aj)))
+            self.V[i] += alpha*(self.S[i]*max(0,(self.rew-self.Aj)))
+        self.V[-1] +=alpha*(self.Th*max(0,(self.rew-self.Aj)))
 
     def maj_A(self):
         for i in range(self.A.size-1):
