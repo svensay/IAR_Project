@@ -16,7 +16,7 @@ class CortexOrbitoFrontal :
 
     def poids_Wi(self,beta = 0.8) :
         for i in range(self.W.size) :
-            self.W[i]+=beta*(self.S[i]*self.Oj)
+            self.W[i]=beta*(self.S[i]*self.Oj)
 
     def maj_O(self):
         for i in range(self.O.size) :
@@ -29,4 +29,4 @@ class CortexOrbitoFrontal :
         self.O.resize(S.size)
         self.calcul_somme_O()
         self.poids_Wi()
-        self.maj_O
+        self.maj_O()

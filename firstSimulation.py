@@ -6,8 +6,11 @@ import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
  
-    th = np.ones((1700,), dtype=int) # Stimulus du Thalamus
-    s = np.ones((1700,), dtype=int) # Stimulus du Cortex Sensible (Sensory Cortex)
+    nb_graph = 7
+    x_range = 1700
+    
+    th = np.ones((x_range,), dtype=int) # Stimulus du Thalamus
+    s = np.ones((x_range,), dtype=int) # Stimulus du Cortex Sensible (Sensory Cortex)
     
     a = np.ones((300,), dtype=int) # Récompense de 0 a 300 environ qui vaut 1
     b = np.zeros((400,), dtype=int) # Récompense de 300 a 700 environ qui vaut 0
@@ -19,6 +22,10 @@ if __name__ == "__main__":
     amygdale = am.Amygdala(np.array([s[0]]),np.array([th[0]]),np.array([rew[0]]))
     cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s[0]]),np.array([rew[0]]))
     
+    A = np.array([]) # Tableaux des E
+    
+    O = np.array([]) # Tableaux des E
+    
     E = np.array([]) # Tableaux des E
     
     vth = np.array([]) # Tableaux des Vth
@@ -27,10 +34,15 @@ if __name__ == "__main__":
     
     w0 = np.array([]) # Tableaux des W0
     
-    for i in range(1700):
+    for i in range(x_range):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]))
         cortexorbitofrontal.pas_de_temps(np.array([s[i]]),np.array([rew[i]]))
+        
+        A = np.append(A,np.sum(amygdale.A))
+        
+        O = np.append(O,np.sum(cortexorbitofrontal.O))
+        
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
         
@@ -41,46 +53,46 @@ if __name__ == "__main__":
         w0 = np.append(w0,cortexorbitofrontal.W[0])
     
     # Axes de x
-    x = np.arange(0,1700)
+    x = np.arange(0,x_range)
     
     # Graphe en bar de Th
-    plt.subplot(7, 1, 1)
+    plt.subplot(nb_graph, 1, 1)
     plt.ylabel('Th')
     plt.xticks([])
     plt.bar(x,th,color=['black'])
     
     # Graphe en bar de S
-    plt.subplot(7, 1, 2)
+    plt.subplot(nb_graph, 1, 2)
     plt.ylabel('S')
     plt.xticks([])
     plt.bar(x,s,color=['black'])
     
     # Graphe en courbe de E
-    plt.subplot(7, 1, 3)
+    plt.subplot(nb_graph, 1, 3)
     plt.ylabel('E')
     plt.xticks([])
     plt.plot(x,E,'k')
     
     # Graphe en bar de Rew
-    plt.subplot(7, 1, 4)
+    plt.subplot(nb_graph, 1, 4)
     plt.ylabel('Rew')
     plt.xticks([])
     plt.bar(x,rew,color=['black'])
     
     # Graphe en courbe de Vth
-    plt.subplot(7, 1, 5)
+    plt.subplot(nb_graph, 1, 5)
     plt.ylabel('Vth')
     plt.xticks([])
     plt.plot(x,vth,'k')
     
     # Graphe en courbe de V0
-    plt.subplot(7, 1, 6)
+    plt.subplot(nb_graph, 1, 6)
     plt.ylabel('V0')
     plt.xticks([])
     plt.plot(x,v0,'k')
     
     # Graphe en courbe de W0
-    plt.subplot(7, 1, 7)
+    plt.subplot(nb_graph, 1, 7)
     plt.ylabel('W0')
     plt.plot(x,w0,'k')
     
