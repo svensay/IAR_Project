@@ -22,10 +22,6 @@ if __name__ == "__main__":
     amygdale = am.Amygdala(np.array([s[0]]),np.array([th[0]]),np.array([rew[0]]))
     cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s[0]]),np.array([rew[0]]))
     
-    A = np.array([]) # Tableaux des E
-    
-    O = np.array([]) # Tableaux des E
-    
     E = np.array([]) # Tableaux des E
     
     vth = np.array([]) # Tableaux des Vth
@@ -38,10 +34,6 @@ if __name__ == "__main__":
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]))
         cortexorbitofrontal.pas_de_temps(np.array([s[i]]),np.array([rew[i]]))
-        
-        A = np.append(A,np.sum(amygdale.A))
-        
-        O = np.append(O,np.sum(cortexorbitofrontal.O))
         
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
