@@ -34,4 +34,5 @@ class Amygdala:
         self.maj_A()
 
     def calcul_E(self,O) :
-        return np.sum(self.A) - np.sum(O)
+        #print("O = ",self.O[i])
+        return np.sum(self.A) - np.sum(O)-self.A[-1]

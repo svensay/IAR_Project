@@ -10,7 +10,7 @@ if __name__ == "__main__":
     x_range = 1700
     
     th = np.ones((x_range,), dtype=int) # Stimulus du Thalamus
-    s = np.ones((x_range,), dtype=int) # Stimulus du Cortex Sensible (Sensory Cortex)
+    s = np.ones((x_range,), dtype=float) # Stimulus du Cortex Sensible (Sensory Cortex)
     
     a = np.ones((300,), dtype=int) # Récompense de 0 a 300 environ qui vaut 1
     b = np.zeros((400,), dtype=int) # Récompense de 300 a 700 environ qui vaut 0
@@ -29,20 +29,25 @@ if __name__ == "__main__":
     v0 = np.array([]) # Tableaux des V0
     
     w0 = np.array([]) # Tableaux des W0
+
+    eValue = float(s[0])
     
-    for i in range(x_range):
+    for i in range(5):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]))
+        cortexorbitofrontal.maj_E(eValue)
         cortexorbitofrontal.pas_de_temps(np.array([s[i]]),np.array([rew[i]]))
         
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
         
-        # Ajout dans les tableaux leurs valeurs respectif
+        # Ajout dans les tableaux leurs valeurs respectives
         E = np.append(E,eValue)
         vth = np.append(vth,amygdale.V[-1])
         v0 = np.append(v0,amygdale.V[0])
         w0 = np.append(w0,cortexorbitofrontal.W[0])
+        print("\t i = ", i)
+
     
     # Axes de x
     x = np.arange(0,x_range)
