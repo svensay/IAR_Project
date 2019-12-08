@@ -21,16 +21,17 @@ class CortexOrbitoFrontal :
         #print("taille ", self.W.size)
         for i in range(self.W.size) :
             #self.W[i]+=beta*(self.S[i]*self.Oj)
-            self.W[i]= self.E-self.rew[0]
+            self.W[i]+= beta*(self.S[i]*(self.E-self.rew[0]))
+            """
             print("E = ",self.E)
             print("rew = ",self.rew[0])
             print("W = ",self.W[i])
-            
+            """
 
     def maj_O(self):
         for i in range(self.O.size) :
             self.O[i] = self.S[i] * self.W[i]
-            print("O = ",self.O[i])
+            #print("O = ",self.O[i])
 
     def maj_E(self,E):
         self.E = E

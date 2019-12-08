@@ -13,6 +13,7 @@ if __name__ == "__main__":
     rew = np.ones(15)
     amygdale = am.Amygdala(S,Th,rew[0])
     CoF = cof.CortexOrbitoFrontal(S,rew[0])
+    E = 0
     for i in range(15) :
         amygdale.pas_de_temps(S,Th,rew[i])
         CoF.maj_E(E)

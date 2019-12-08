@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     eValue = float(s[0])
     
-    for i in range(5):
+    for i in range(x_range):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]))
         cortexorbitofrontal.maj_E(eValue)
@@ -46,8 +46,7 @@ if __name__ == "__main__":
         vth = np.append(vth,amygdale.V[-1])
         v0 = np.append(v0,amygdale.V[0])
         w0 = np.append(w0,cortexorbitofrontal.W[0])
-        print("\t i = ", i)
-
+        #print("\t i = ", i)
     
     # Axes de x
     x = np.arange(0,x_range)
@@ -68,8 +67,8 @@ if __name__ == "__main__":
     plt.subplot(nb_graph, 1, 3)
     plt.ylabel('E')
     plt.xticks([])
-    plt.plot(x,E,'k')
-    
+    plt.plot(x,E,'k')  
+
     # Graphe en bar de Rew
     plt.subplot(nb_graph, 1, 4)
     plt.ylabel('Rew')
@@ -90,8 +89,9 @@ if __name__ == "__main__":
     
     # Graphe en courbe de W0
     plt.subplot(nb_graph, 1, 7)
+    plt.ylim(0.0,1.0)
     plt.ylabel('W0')
-    plt.plot(x,w0,'k')
+    plt.plot(x, w0,'k')
     
     plt.subplots_adjust(top=1.5)
     plt.show()

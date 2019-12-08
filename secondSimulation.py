@@ -23,17 +23,17 @@ if __name__ == "__main__":
         else:
             th = np.append(th,0)
             
-        if( ((i >= 0 and i < 350) or (i > 500 and i < 700)) and (i % gap == 0)):
+        if( ((i >= 0 and i <= 350) or (i >= 500 and i <= 700)) and (i % gap == 0)):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
-        if( (i > 190 and i < 500) and i % gap == 0):
+        if( (i >= 190 and i <= 500) and i % gap == 0):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
-        if(i >= 0 and i < 320 and i % gap == 0):
+        if(i >= 0 and i <= 320 and i % gap == 0):
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
@@ -43,10 +43,12 @@ if __name__ == "__main__":
         
     E = np.array([]) # Tableaux des E
     
+    eValue = float(s0[0])
     
     for i in range(x_range):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s0[i],s1[i]]),np.array([th[i]]),np.array([rew[i]]))
+        cortexorbitofrontal.maj_E(eValue)
         cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i]]),np.array([rew[i]]))
                 
         # Calcult de la valeur de E
@@ -78,6 +80,7 @@ if __name__ == "__main__":
     
     # Graphe en courbe de E
     plt.subplot(nb_graph, 1, 4)
+    
     plt.ylabel('E')
     plt.xticks([])
     plt.plot(x,E,'k')

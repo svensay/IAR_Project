@@ -50,10 +50,12 @@ if __name__ == "__main__":
         
     E = np.array([]) # Tableaux des E
     
+    eValue = float(s0[0])
     
     for i in range(x_range):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([th[i]]),np.array([rew[i]]))
+        cortexorbitofrontal.maj_E(eValue)
         cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]))
                 
         # Calcult de la valeur de E
