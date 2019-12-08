@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
  
     nb_graph = 5 # nombre de graphe
-    x_range = 700 # nombre de pas
-    gap = 10 # écart entre les valeurs
+    x_range = 40 # nombre de pas
+    #gap = 14 # écart entre les valeurs
     
     th = np.array([]) # Stimulus du Thalamus
     s0 = np.array([]) # 1er stimulus du Cortex Sensible (Sensory Cortex)
@@ -18,22 +18,28 @@ if __name__ == "__main__":
     
     #Initialisation
     for i in range(x_range):
+        """
         if(i % gap == 0):
             th = np.append(th,1)
         else:
             th = np.append(th,0)
-            
-        if( ((i >= 0 and i <= 350) or (i >= 500 and i <= 700)) and (i % gap == 0)):
+        """
+        th = np.append(th,1)
+        
+        #if( ((i >= 0 and i <= 350) or (i >= 500 and i <= 700)) and (i % gap == 0)):
+        if( ((i >= 0 and i <= 20) or (i >= 31 and i <= 40))):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
-        if( (i >= 190 and i <= 500) and i % gap == 0):
+        #if( (i >= 190 and i <= 500) and i % gap == 0):
+        if( (i >= 11 and i <= 30)):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
-        if(i >= 0 and i <= 320 and i % gap == 0):
+        #if(i >= 0 and i <= 320 and i % gap == 0):
+        if(i >= 0 and i <= 20):
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
@@ -59,7 +65,7 @@ if __name__ == "__main__":
     
     # Axes de x
     x = np.arange(0,x_range)
-    
+    #plt.figure(num=None, figsize=(30, 3), dpi=80, facecolor='w', edgecolor='k')
     # Graphe en bar de Th
     plt.subplot(nb_graph, 1, 1)
     plt.ylabel('Th')
@@ -80,7 +86,7 @@ if __name__ == "__main__":
     
     # Graphe en courbe de E
     plt.subplot(nb_graph, 1, 4)
-    
+    plt.ylim(0.0,1.2)
     plt.ylabel('E')
     plt.xticks([])
     plt.plot(x,E,'k')

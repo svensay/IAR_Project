@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
  
     nb_graph = 6 # nombre de graphe
-    x_range = 250 # nombre de pas de temps
+    x_range = 36 # nombre de pas de temps
     gap1 = 5 # 1er écart entre les valeurs
     gap2 = 10 # 2er écart entre les valeurs
     
@@ -20,27 +20,34 @@ if __name__ == "__main__":
     
     #Initialisation
     for i in range(x_range):
+        """
         if(i % gap1 == 0 and i < 210):
             th = np.append(th,1)
         else:
             th = np.append(th,0)
-            
-        if((i >= 60 and i < 160) and (i % gap1 == 0)):
+         """
+        th = np.append(th,1)
+         
+        #if((i >= 60 and i < 160) and (i % gap1 == 0)):
+        if((i >= 11 and i <= 26) ):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
-        if( ((i >= 70 and i < 160) and i % gap2 == 0 ) or ((i >= 160 and i <= 180) and i % gap1 == 0 )):
+        #if( ((i >= 70 and i < 160) and i % gap2 == 0 ) or ((i >= 160 and i <= 180) and i % gap1 == 0 )):
+        if( ((i >= 11 and i <= 26) and i % 2 == 0 ) or ((i >= 26 and i <= 31))):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
-        if( ((i >= 0 and i < 60) or (i > 160 and i <= 210)) and i % gap1 == 0 ):
+        #if( ((i >= 0 and i < 60) or (i > 160 and i <= 210)) and i % gap1 == 0 ):
+        if( ((i >= 0 and i <= 11) or (i >= 26 and i <= 36))):
             s2 = np.append(s2,1)
         else:
             s2 = np.append(s2,0)
         
-        if((i >= 0 and i < 60 and i % gap1 == 0) or ((i >= 60 and i < 150 and i % gap2 == 0))):
+        #if((i >= 0 and i < 60 and i % gap1 == 0) or ((i >= 60 and i < 150 and i % gap2 == 0))):
+        if((i >= 0 and i <= 11) or ((i >= 11 and i <= 26 and i % 2 == 0))):
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
