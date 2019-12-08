@@ -9,7 +9,7 @@ if __name__ == "__main__":
  
     nb_graph = 5 # nombre de graphe
     x_range = 40 # nombre de pas
-    #gap = 14 # écart entre les valeurs
+    gap = 15 # écart entre les valeurs
     
     th = np.array([]) # Stimulus du Thalamus
     s0 = np.array([]) # 1er stimulus du Cortex Sensible (Sensory Cortex)
@@ -43,6 +43,12 @@ if __name__ == "__main__":
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
+        
+        for i in range(gap-1):
+            th = np.append(th,0)
+            s0 = np.append(s0,0)
+            s1 = np.append(s1,0)
+            rew = np.append(rew,0)
             
     amygdale = am.Amygdala(np.array([s0[0],s1[0]]),np.array([th[0]]),np.array([rew[0]]))
     cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0]]),np.array([rew[0]]))
@@ -51,7 +57,7 @@ if __name__ == "__main__":
     
     eValue = float(s0[0])
     
-    for i in range(x_range):
+    for i in range(0,x_range*gap,gap):
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s0[i],s1[i]]),np.array([th[i]]),np.array([rew[i]]))
         cortexorbitofrontal.maj_E(eValue)
@@ -61,10 +67,17 @@ if __name__ == "__main__":
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
         
         # Ajout dans les tableaux leurs valeurs respectif
-        E = np.append(E,eValue)
+        for i in range(gap):
+            E = np.append(E,eValue)
+    
+    print("th : " ,th.size)
+    print("s0 : " ,s0.size)
+    print("s1 : " ,s1.size)
+    print("rew : " ,rew.size)
+    print("E : " ,E.size)
     
     # Axes de x
-    x = np.arange(0,x_range)
+    x = np.arange(0,x_range*gap)
     #plt.figure(num=None, figsize=(30, 3), dpi=80, facecolor='w', edgecolor='k')
     # Graphe en bar de Th
     plt.subplot(nb_graph, 1, 1)
@@ -86,7 +99,7 @@ if __name__ == "__main__":
     
     # Graphe en courbe de E
     plt.subplot(nb_graph, 1, 4)
-    plt.ylim(0.0,1.2)
+    #plt.ylim(0.0,1.2)
     plt.ylabel('E')
     plt.xticks([])
     plt.plot(x,E,'k')
