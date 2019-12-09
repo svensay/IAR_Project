@@ -14,6 +14,7 @@ class Amygdala:
         self.Aj = np.sum(self.A)
 
     def poids_Vi(self,alpha = 0.2) :
+        
         for i in range(self.V.size-1) :
             self.V[i] += alpha*(self.S[i]*max(0,(self.rew-self.Aj)))
         self.V[-1] +=alpha*(self.Th*max(0,(self.rew-self.Aj)))
@@ -22,7 +23,8 @@ class Amygdala:
         for i in range(self.A.size-1):
             self.A[i] = self.S[i] * self.V[i]
         self.A[-1] = self.Th* self.V[-1]
-        #self.A[-1] = self.Th
+        #self.A[-1] = 0
+        #self.A[-1] = np.max(self.A)
 
 
     def pas_de_temps(self,S,Th,rew) :

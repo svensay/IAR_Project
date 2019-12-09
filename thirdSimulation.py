@@ -2,7 +2,7 @@
 
 import numpy as np
 import Amygdala as am
-import CortexOrbitoFrontal2 as cof
+import CortexOrbitoFrontal as cof
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
@@ -59,7 +59,7 @@ if __name__ == "__main__":
             rew = np.append(rew,0)
             
     amygdale = am.Amygdala(np.array([s0[0],s1[0],s2[0]]),np.array([th[0]]),np.array([rew[0]]))
-    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0],s2[0]]),np.array([rew[0]]),float(th[0]))
+    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0],s2[0]]),np.array([rew[0]]))
         
     E = np.array([]) # Tableaux des E
     
@@ -71,10 +71,8 @@ if __name__ == "__main__":
         amygdale.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([th[i]]),np.array([rew[i]]))
         
         #cortexorbitofrontal.maj_E(eValue)
-        if i == 0:
-            cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]),eValue, first = True)
-        else :
-            cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]),eValue)
+        
+        cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]))
                 
         
 
@@ -88,6 +86,8 @@ if __name__ == "__main__":
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
         #print("O = ", np.sum(cortexorbitofrontal.O))
         print("E = ", eValue)
+
+        cortexorbitofrontal.maj_E(eValue)
         
         # Ajout dans les tableaux leurs valeurs respectif
         for i in range(gap):
