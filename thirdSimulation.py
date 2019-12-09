@@ -28,25 +28,25 @@ if __name__ == "__main__":
         th = np.append(th,1)
          
         #if((i >= 60 and i < 160) and (i % gap1 == 0)):
-        if((i >= 11 and i <= 26) ):
+        if((i >= 10 and i <= 25) ):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
         #if( ((i >= 70 and i < 160) and i % gap2 == 0 ) or ((i >= 160 and i <= 180) and i % gap1 == 0 )):
-        if( ((i >= 11 and i <= 26) and i % 2 == 0 ) or ((i >= 26 and i <= 31))):
+        if( ((i >= 11 and i <= 25) and i % 2 == 1 ) or ((i >= 26 and i <= 30))):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
         #if( ((i >= 0 and i < 60) or (i > 160 and i <= 210)) and i % gap1 == 0 ):
-        if( ((i >= 0 and i <= 11) or (i >= 26 and i <= 36))):
+        if( ((i >= 0 and i <= 9) or (i >= 26 and i <= 36))):
             s2 = np.append(s2,1)
         else:
             s2 = np.append(s2,0)
         
         #if((i >= 0 and i < 60 and i % gap1 == 0) or ((i >= 60 and i < 150 and i % gap2 == 0))):
-        if((i >= 0 and i <= 11) or ((i >= 11 and i <= 26 and i % 2 == 0))):
+        if((i >= 0 and i <= 10) or ((i >= 12 and i <= 24 and i % 2 == 0))):
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
@@ -58,12 +58,12 @@ if __name__ == "__main__":
             s2 = np.append(s2,0)
             rew = np.append(rew,0)
             
-    amygdale = am.Amygdala(np.array([s0[0],s1[0],s2[0]]),np.array([th[0]]),np.array([rew[0]]))
-    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0],s2[0]]),np.array([rew[0]]))
+    amygdale = am.Amygdala(np.array([0,0,0]),np.array([0]),np.array([0]))
+    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([0,0,0]),np.array([0]))
         
     E = np.array([]) # Tableaux des E
     
-    eValue = float(th[0])
+    eValue = amygdale.calcul_E(cortexorbitofrontal.O)
     
     for i in range(0,x_range*gap,gap):
             

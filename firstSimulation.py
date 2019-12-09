@@ -99,7 +99,6 @@ if __name__ == "__main__":
     
     # Graphe en courbe de W0
     plt.subplot(nb_graph, 1, 7)
-    plt.ylim(0.0,1.0)
     plt.ylabel('W0')
     plt.plot(x, w0,'k')
     

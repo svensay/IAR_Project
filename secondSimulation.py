@@ -27,19 +27,19 @@ if __name__ == "__main__":
         th = np.append(th,1)
         
         #if( ((i >= 0 and i <= 350) or (i >= 500 and i <= 700)) and (i % gap == 0)):
-        if( ((i >= 0 and i <= 20) or (i >= 31 and i <= 40))):
+        if( ((i >= 0 and i <= 19) or (i >= 30 and i <= 39))):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
         #if( (i >= 190 and i <= 500) and i % gap == 0):
-        if( (i >= 11 and i <= 30)):
+        if( (i >= 10 and i <= 29)):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
         #if(i >= 0 and i <= 320 and i % gap == 0):
-        if(i >= 0 and i <= 20):
+        if(i >= 0 and i <= 19):
             rew = np.append(rew,1)
         else:
             rew = np.append(rew,0)
@@ -50,8 +50,8 @@ if __name__ == "__main__":
             s1 = np.append(s1,0)
             rew = np.append(rew,0)
             
-    amygdale = am.Amygdala(np.array([s0[0],s1[0]]),np.array([th[0]]),np.array([rew[0]]))
-    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0]]),np.array([rew[0]]))
+    amygdale = am.Amygdala(np.array([0,0]),np.array([0]),np.array([0]))
+    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([0,0]),np.array([0]))
         
     E = np.array([]) # Tableaux des E
     
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     
     # Graphe en courbe de E
     plt.subplot(nb_graph, 1, 4)
-    #plt.ylim(0.0,1.2)
+    plt.ylim(0.0,1.2)
     plt.ylabel('E')
     plt.xticks([])
     plt.plot(x,E,'k')

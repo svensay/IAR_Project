@@ -40,4 +40,6 @@ class Amygdala:
     def calcul_E(self,O) :
         #print("O = ",self.O[i])
         #print("O = ", np.sum(O))
+        if(np.sum(self.A) - np.sum(O) < 0):
+            return 0
         return np.sum(self.A) - np.sum(O)
