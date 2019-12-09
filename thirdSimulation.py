@@ -2,7 +2,7 @@
 
 import numpy as np
 import Amygdala as am
-import CortexOrbitoFrontal as cof
+import CortexOrbitoFrontal2 as cof
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
@@ -59,20 +59,35 @@ if __name__ == "__main__":
             rew = np.append(rew,0)
             
     amygdale = am.Amygdala(np.array([s0[0],s1[0],s2[0]]),np.array([th[0]]),np.array([rew[0]]))
-    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0],s2[0]]),np.array([rew[0]]))
+    cortexorbitofrontal = cof.CortexOrbitoFrontal(np.array([s0[0],s1[0],s2[0]]),np.array([rew[0]]),float(th[0]))
         
     E = np.array([]) # Tableaux des E
     
-    eValue = float(s0[0])
+    eValue = float(th[0])
     
     for i in range(0,x_range*gap,gap):
+            
         # Calcul d'un pas de temps
         amygdale.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([th[i]]),np.array([rew[i]]))
-        cortexorbitofrontal.maj_E(eValue)
-        cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]))
+        
+        #cortexorbitofrontal.maj_E(eValue)
+        if i == 0:
+            cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]),eValue, first = True)
+        else :
+            cortexorbitofrontal.pas_de_temps(np.array([s0[i],s1[i],s2[i]]),np.array([rew[i]]),eValue)
                 
+        
+
+        print("\t i -> ",i)
+        print("details de A -> ",amygdale.A)
+        print("details de V -> ",amygdale.V)
+        print("A = ", np.sum(amygdale.A))
+        print("details de O -> ", cortexorbitofrontal.O)
+        print("details de W -> ",cortexorbitofrontal.W)
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
+        #print("O = ", np.sum(cortexorbitofrontal.O))
+        print("E = ", eValue)
         
         # Ajout dans les tableaux leurs valeurs respectif
         for i in range(gap):

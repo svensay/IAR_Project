@@ -21,7 +21,9 @@ class Amygdala:
     def maj_A(self):
         for i in range(self.A.size-1):
             self.A[i] = self.S[i] * self.V[i]
-        self.A[-1] = self.Th * self.V[-1]
+        self.A[-1] = self.Th* self.V[-1]
+        #self.A[-1] = self.Th
+
 
     def pas_de_temps(self,S,Th,rew) :
         self.S = S
@@ -35,4 +37,5 @@ class Amygdala:
 
     def calcul_E(self,O) :
         #print("O = ",self.O[i])
-        return np.sum(self.A) - np.sum(O)-self.A[-1]
+        #print("O = ", np.sum(O))
+        return np.sum(self.A) - np.sum(O)

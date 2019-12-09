@@ -65,6 +65,14 @@ if __name__ == "__main__":
                 
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
+
+        print("\t i -> ",i)
+        print("details de A -> ",amygdale.A)
+        print("A = ", np.sum(amygdale.A))
+        print("details de O -> ", cortexorbitofrontal.O)
+        print("details de W -> ",cortexorbitofrontal.W)
+        print("O = ", np.sum(cortexorbitofrontal.O))
+        print("E = ", eValue)
         
         # Ajout dans les tableaux leurs valeurs respectif
         for i in range(gap):

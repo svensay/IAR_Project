@@ -8,12 +8,12 @@ class CortexOrbitoFrontal :
         self.W = np.zeros(S.size)
         self.O = np.zeros(S.size)
         self.Oj = 0.
-        self.E = 0.
+        self.E = 1.
 
     def calcul_somme_O(self) :
         self.Oj = 0
         #for i in range(self.O.size) :
-            #self.Oj+=self.O[i]-self.rew
+            #self.Oj+=self.O[i]-(self.rew[0]*self.S[i])
         self.Oj = self.E-self.rew
             
 
@@ -21,7 +21,10 @@ class CortexOrbitoFrontal :
         #print("taille ", self.W.size)
         for i in range(self.W.size) :
             #self.W[i]+=beta*(self.S[i]*self.Oj)
-            self.W[i]+= beta*(self.S[i]*(self.E-self.rew[0]))
+            self.W[i]+= beta*(self.S[i]*(self.E-(self.rew[0])))
+            if self.W[i] < 0 :
+                self.W[i] = 0
+            
             """
             print("E = ",self.E)
             print("rew = ",self.rew[0])
