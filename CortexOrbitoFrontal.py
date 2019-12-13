@@ -37,7 +37,5 @@ class CortexOrbitoFrontal :
     def pas_de_temps(self,S,rew) :
         self.S = S
         self.rew = rew
-        #self.W.resize(S.size)
-        #self.O.resize(S.size)
         self.poids_Wi()
         self.maj_O()
