@@ -18,27 +18,18 @@ if __name__ == "__main__":
     
     #Initialisation
     for i in range(x_range):
-        """
-        if(i % gap == 0):
-            th = np.append(th,1)
-        else:
-            th = np.append(th,0)
-        """
         th = np.append(th,1)
         
-        #if( ((i >= 0 and i <= 350) or (i >= 500 and i <= 700)) and (i % gap == 0)):
         if( ((i >= 0 and i <= 19) or (i >= 30 and i <= 39))):
             s0 = np.append(s0,1)
         else:
             s0 = np.append(s0,0)
     
-        #if( (i >= 190 and i <= 500) and i % gap == 0):
         if( (i >= 10 and i <= 29)):
             s1 = np.append(s1,1)
         else:
             s1 = np.append(s1,0)
         
-        #if(i >= 0 and i <= 320 and i % gap == 0):
         if(i >= 0 and i <= 19):
             rew = np.append(rew,1)
         else:
@@ -55,7 +46,7 @@ if __name__ == "__main__":
         
     E = np.array([]) # Tableaux des E
     
-    eValue = float(s0[0])
+    eValue = amygdale.calcul_E(cortexorbitofrontal.O)
     
     for i in range(0,x_range*gap,gap):
         # Calcul d'un pas de temps
@@ -65,28 +56,14 @@ if __name__ == "__main__":
                 
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
-
-        print("\t i -> ",i)
-        print("details de A -> ",amygdale.A)
-        print("A = ", np.sum(amygdale.A))
-        print("details de O -> ", cortexorbitofrontal.O)
-        print("details de W -> ",cortexorbitofrontal.W)
-        print("O = ", np.sum(cortexorbitofrontal.O))
-        print("E = ", eValue)
         
-        # Ajout dans les tableaux leurs valeurs respectif
+        # Ajout dans le tableau + gap
         for i in range(gap):
             E = np.append(E,eValue)
     
-    print("th : " ,th.size)
-    print("s0 : " ,s0.size)
-    print("s1 : " ,s1.size)
-    print("rew : " ,rew.size)
-    print("E : " ,E.size)
-    
     # Axes de x
     x = np.arange(0,x_range*gap)
-    #plt.figure(num=None, figsize=(30, 3), dpi=80, facecolor='w', edgecolor='k')
+    
     # Graphe en bar de Th
     plt.subplot(nb_graph, 1, 1)
     plt.ylabel('Th')

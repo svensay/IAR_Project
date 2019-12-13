@@ -8,7 +8,6 @@ if __name__ == "__main__":
  
     nb_graph = 7
     x_range = 1700
-    
     th = np.ones((x_range,), dtype=int) # Stimulus du Thalamus
     s = np.ones((x_range,), dtype=float) # Stimulus du Cortex Sensible (Sensory Cortex)
     
@@ -41,22 +40,11 @@ if __name__ == "__main__":
         # Calcult de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
 
-        if i < 10 :
-            print("\t i -> ",i)
-            print("details de A -> ",amygdale.A)
-            print("details de V -> ",amygdale.V)
-            print("A = ", np.sum(amygdale.A))
-            print("details de O -> ", cortexorbitofrontal.O)
-            print("details de W -> ",cortexorbitofrontal.W)
-            print("O = ", np.sum(cortexorbitofrontal.O))
-            print("E = ", eValue)
-        
         # Ajout dans les tableaux leurs valeurs respectives
         E = np.append(E,eValue)
         vth = np.append(vth,amygdale.V[-1])
         v0 = np.append(v0,amygdale.V[0])
         w0 = np.append(w0,cortexorbitofrontal.W[0])
-        #print("\t i = ", i)
     
     # Axes de x
     x = np.arange(0,x_range)
