@@ -2,7 +2,7 @@
 A Computational Model of Emotional Learning in the Amygdala
 Simulation de l'article : http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.1.6046&rep=rep1&type=pdf
 
-##Getting Started
+## Getting Started
 
 ### Prerequisites & Installing
 
