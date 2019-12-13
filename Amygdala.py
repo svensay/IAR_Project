@@ -39,8 +39,6 @@ class Amygdala:
         self.S = S
         self.Th = Th
         self.rew = rew
-        #self.V.resize(S.size+1)
-        #self.A.resize(S.size+1)
         self.calcul_somme_A()
         self.poids_Vi()
         self.maj_A()
