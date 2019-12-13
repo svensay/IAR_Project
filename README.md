@@ -17,9 +17,9 @@ Package prérequis:
 
 ## Running the tests
 Il y a un fichier par simulations :
-	-	firstSimulation.py
-	-	secondSimulation.py
-	-	thirdSimulation.py
+-	firstSimulation.py
+-	secondSimulation.py
+-	thirdSimulation.py
 
 Lancer ces fichiers avec python pour observer les résulstats des simulations.
 
