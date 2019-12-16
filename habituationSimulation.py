@@ -37,11 +37,11 @@ if __name__ == "__main__":
     for i in range(0,x_range*gap,gap):
             
         # Calcul d'un pas de temps
-        amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]))
+        amygdale.pas_de_temps(np.array([s[i]]),np.array([th[i]]),np.array([rew[i]]),alpha=0.25)
         cortexorbitofrontal.maj_E(eValue)
-        cortexorbitofrontal.pas_de_temps(np.array([s[i]]),np.array([rew[i]]))
+        cortexorbitofrontal.pas_de_temps(np.array([s[i]]),np.array([rew[i]]),beta=0.25)
 
-        # Calcult de la valeur de E
+        # Calcul de la valeur de E
         eValue = amygdale.calcul_E(cortexorbitofrontal.O)
         E = np.append(E,eValue)
         # Ajout dans le tableau + gap

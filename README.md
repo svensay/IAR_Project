@@ -6,7 +6,7 @@ Simulation de l'article : http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1
 
 ### Prerequisites & Installing
 
-Package prérequis:
+Packages prérequis:
 -	Numpy
 -	Matplotlib
 
@@ -16,12 +16,12 @@ Package prérequis:
 ```
 
 ## Running the tests
-Il y a un fichier par simulations :
+Il y a un fichier par simulation :
 -	firstSimulation.py
 -	secondSimulation.py
 -	thirdSimulation.py
 
-Lancer ces fichiers avec python pour observer les résulstats des simulations.
+Lancer ces fichiers avec python pour observer les résultats des simulations.
 
 ```
 	python3 firstSimulation.py

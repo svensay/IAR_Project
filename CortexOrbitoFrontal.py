@@ -10,16 +10,16 @@ class CortexOrbitoFrontal :
         self.E = 1.
         
     """
-    Calcul les poids des connections W des noeuds O
+    Calcule les poids des connections W des noeuds O
     """
-    def poids_Wi(self,beta = 0.8) :
+    def poids_Wi(self,beta) :
         for i in range(self.W.size) :
             self.W[i]+= beta*(self.S[i]*(self.E-(self.rew[0])))
             if self.W[i] < 0 :
                 self.W[i] = 0
     
     """
-    Calcul la valeur des noeuds A
+    Calcule la valeur des noeuds A
     """
     def maj_O(self):
         for i in range(self.O.size) :
@@ -34,8 +34,8 @@ class CortexOrbitoFrontal :
     """
     Applique un pas de temps qui met a jour les données
     """
-    def pas_de_temps(self,S,rew) :
+    def pas_de_temps(self,S,rew,beta=0.8) :
         self.S = S
         self.rew = rew
-        self.poids_Wi()
+        self.poids_Wi(beta)
         self.maj_O()
